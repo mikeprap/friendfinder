@@ -49,10 +49,9 @@ var friendArray = [
         5,
     ]
 },
-    
+    ]
 
 
+// Export the array
 
-
-
-]
+module.exports = friendArray;
