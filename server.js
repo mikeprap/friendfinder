@@ -10,8 +10,8 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-require("./app/routing/apiRoutes");
-require("./app/routing/htmlRoutes");
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 
 
