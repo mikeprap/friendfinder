@@ -28,8 +28,8 @@
         </h4>
         <form>
             <div class="form-group">
-                <label for="q1">I feel nervous any time i have to talk to a new person</label>
-                <select class="form-control" id="q1">
+                <label for="1">I feel nervous any time i have to talk to a new person</label>
+                <select class="form-control" id="1">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -39,8 +39,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q2">I work hard on everthing i do and never slack off. </label>
-                <select class="form-control" id="q2">
+                <label for="2">I work hard on everthing i do and never slack off. </label>
+                <select class="form-control" id="2">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -50,8 +50,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q3">I go to the gym multiple times a week.</label>
-                <select class="form-control" id="q3">
+                <label for="3">I go to the gym multiple times a week.</label>
+                <select class="form-control" id="3">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -61,8 +61,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q4">I enjoy what i do for a living!</label>
-                <select class="form-control" id="q4">
+                <label for="4">I enjoy what i do for a living!</label>
+                <select class="form-control" id="4">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -72,8 +72,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q5">I dont like being out for more than a few hours at a time.</label>
-                <select class="form-control" id="q5">
+                <label for="5">I dont like being out for more than a few hours at a time.</label>
+                <select class="form-control" id="5">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -83,8 +83,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q6">I enjoy playing video games in my spare time.</label>
-                <select class="form-control" id="q6">
+                <label for="6">I enjoy playing video games in my spare time.</label>
+                <select class="form-control" id="6">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -94,8 +94,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q7">.....</label>
-                <select class="form-control" id="q7">
+                <label for="7">.....</label>
+                <select class="form-control" id="7">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -105,8 +105,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q8">......</label>
-                <select class="form-control" id="q8">
+                <label for="8">......</label>
+                <select class="form-control" id="8">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -116,8 +116,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q9">....</label>
-                <select class="form-control" id="q9">
+                <label for="9">....</label>
+                <select class="form-control" id="9">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -127,8 +127,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q10">......</label>
-                <select class="form-control" id="q10">
+                <label for="10">......</label>
+                <select class="form-control" id="10">
                     <option value="empty"></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -144,7 +144,7 @@
             Submit
         </button>
       
-        <div id="newFriendModal" class="modal fade" role="dialog" aria-hidden="true" width="300px">
+        <div id="newFriendMatch" class="modal fade" role="dialog" aria-hidden="true" width="300px">
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <h4>Friend Match</h4>
@@ -166,3 +166,48 @@
         </div>
     </footer>
 </body>
+
+<script type="text/javascript">
+
+$("#submitBtn").on("click", function (event) {
+        
+        var valid = true;
+        if ($("#name").val() === "" || $("#photo").val() === "") {
+            valid = false;
+        } else if ($("#1").val() === "empty" || $("#2").val() === "empty" || $("#3").val() === "empty" || $("#4").val() === "empty" || $("#5").val() === "empty" || $("#6").val() === "empty" || $("#7").val() === "empty" || $("#8").val() === "empty" || $("#9").val() === "empty" || $("#10").val() === "empty") {
+            valid = false;
+        }
+        if (valid === true) {
+            
+            var newFriend = {
+                
+                name: $("#name").val().trim(),
+                
+                photo: $("#photo").val().trim(),
+                
+                scores: [parseInt($("#1").val()), parseInt($("#2").val()), parseInt($("#3").val()), parseInt($("#4").val()), parseInt($("#5").val()),
+                
+                parseInt($("#6").val()), parseInt($("#7").val()), parseInt($("#8").val()), parseInt($("#9").val()), parseInt($("#10").val())],
+            };
+            console.log(newFriend);
+            
+            $.post("/api/friends", newFriend,
+                function (data) {
+                    console.log(newFriend);
+                    $("#newFriend").text(data.name);
+                    $("#newFriendPhoto").attr("src", data.photo);
+                    $("#newFriendMatch").modal("toggle");
+                });
+        } 
+        else {
+            alert("Please finish filling out the survey!");
+        }
+        
+        
+        
+        $(".form-control").val("");
+        $("#name").val("");
+        $("#photo").val("");
+    });
+
+</script>
