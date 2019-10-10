@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FriendFinder</title>
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Survey Questions</h2>
+        <hr>
+        <h3>Tell us about yourself!</h3>
+        <h4>Your name (required)</h4>
+        <input type="text" id="name" class="form-control" required>
+        <h4>Link to an image of you (required)</h4>
+        <input type="text" id="photo" class="form-control" required>
+        <hr>
+        
+        <h4> Answer the questions below on a scale of 1 to 5, 1 is the LEAST like you, and 5 is the MOST like you.
+        </h4>
+        <form>
+            <div class="form-group">
+                <label for="q1">I feel nervous any time i have to talk to a new person</label>
+                <select class="form-control" id="q1">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q2">I work hard on everthing i do and never slack off. </label>
+                <select class="form-control" id="q2">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q3">I go to the gym multiple times a week.</label>
+                <select class="form-control" id="q3">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q4">I enjoy what i do for a living!</label>
+                <select class="form-control" id="q4">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q5">I dont like being out for more than a few hours at a time.</label>
+                <select class="form-control" id="q5">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q6">I enjoy playing video games in my spare time.</label>
+                <select class="form-control" id="q6">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q7">.....</label>
+                <select class="form-control" id="q7">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q8">......</label>
+                <select class="form-control" id="q8">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q9">....</label>
+                <select class="form-control" id="q9">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="q10">......</label>
+                <select class="form-control" id="q10">
+                    <option value="empty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </form>
+        <br>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            Submit
+        </button>
+      
+        <div id="newFriendModal" class="modal fade" role="dialog" aria-hidden="true" width="300px">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4>Friend Match</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <h5 id="newFriend"></h5>
+                    <img id="newFriendPhoto" width="30%" src="">
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+            </div>   
+        </div>
+    </div>
+    <hr>
+    <footer class="footer">
+        <div class="container">
+            <p><a href="/api/friends">API Friends List</a> | 
+        </div>
+    </footer>
+</body>
