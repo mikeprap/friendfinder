@@ -18,16 +18,16 @@ module.exports = function(app){
         totalDifference = 0;
         
         var newPerson = req.body;
-        var scores = newPerson.scores;
+        var matchScores = newPerson.scores;
         var name = newPerson.name;
         var photo = newPerson.photo;
         var newFriend = {
             name: "",
             photo: "",
-            friends: 50
+            friends: 55
         };
         
-       var score = scores.map(function (item) {
+        let score = matchScores.map(function (item) {
            return parseInt(item, 10);
        })
     
@@ -41,7 +41,7 @@ module.exports = function(app){
     
         // Loop through the friends array
         
-        var tot = score.reduced((a, b) => a + b, 0)
+        var tot = score.reduce((a, b) => a + b, 0)
         
         for (i = 0; i < friendArray.length; i++){
              
