@@ -179,7 +179,7 @@ $("#submitBtn").on("click", function (event) {
         }
         if (valid === true) {
             
-            var newFriend = {
+            var newPerson = {
                 
                 name: $("#name").val().trim(),
                 
@@ -189,14 +189,28 @@ $("#submitBtn").on("click", function (event) {
                 
                 parseInt($("#6").val()), parseInt($("#7").val()), parseInt($("#8").val()), parseInt($("#9").val()), parseInt($("#10").val())],
             };
-            console.log(newFriend);
+           var currentURL = window.location.origin
             
-            $.post("/api/friends", newFriend,
+            $.post(currentURL + "/api/friends", newPerson,
                 function (data) {
-                    console.log(newFriend);
+                   
                     $("#newFriend").text(data.name);
                     $("#newFriendPhoto").attr("src", data.photo);
                     $("#newFriendMatch").modal("toggle");
+
+                    $("#name").val("");
+                    $("#photo").val("");
+                    $("#1").val("");
+                    $("#2").val("");
+                    $("#3").val("");
+                    $("#4").val("");
+                    $("#5").val("");
+                    $("#6").val("");
+                    $("#7").val("");
+                    $("#8").val("");
+                    $("#9").val("");
+                    $("#10").val("");
+
                 });
         } 
         else {
