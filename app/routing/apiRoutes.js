@@ -16,21 +16,26 @@ module.exports = function(app){
     
     app.post("/api/friends", function(req, res){
 
-    
+        var scores = newPerson.scores
         var newPerson = req.body;
-    
+        var name = newPerson.name;
+        var photo = newPerson.photo;
+        var newFriend = {
+            name: "",
+            photo: "",
+            friends: 50
+        };
         
-        for(var i = 0; i < newPerson.scores.length; i++) {
-            newPerson.scores[i] = parseInt(newPerson.scores[i]);
-          }
+       var score = scores.map(function (item) {
+           return parseInt(item, 10);
+       })
     
-        console.log(newPerson.scores);
-    
-       
+       newPerson = {
+           name: name,
+           photo: photo,
+           scores: score,
+       }
         
-       var bestFriendIndex = 0;
-       
-       var closestDifference = 1000; 
       
     
         // Loop through the friends array
