@@ -179,7 +179,7 @@ $("#submitBtn").on("click", function (event) {
         }
         if (valid === true) {
             
-            var newPerson = {
+            var newUser = {
                 
                 name: $("#name").val().trim(),
                 
@@ -191,7 +191,7 @@ $("#submitBtn").on("click", function (event) {
             };
            var currentURL = window.location.origin
             
-            $.post(currentURL + "/api/friends", newPerson,
+            $.post(currentURL + "/api/friends", newUser,
                 function (data) {
                    
                     $("#newFriend").text(data.name);

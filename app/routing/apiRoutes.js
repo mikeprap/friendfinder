@@ -15,9 +15,10 @@ module.exports = function(app){
 
     
     app.post("/api/friends", function(req, res){
-
-        var scores = newPerson.scores
+        totalDifference = 0;
+        
         var newPerson = req.body;
+        var scores = newPerson.scores;
         var name = newPerson.name;
         var photo = newPerson.photo;
         var newFriend = {
@@ -40,32 +41,27 @@ module.exports = function(app){
     
         // Loop through the friends array
         
-        
+        var tot = score.reduced((a, b) => a + b, 0)
         
         for (i = 0; i < friendArray.length; i++){
              
             var totalDifference = 0;
-            
-            
-            for (j = 0; j < newPerson.scores.length; j++){
-               
-                var difference = Math.abs(friendArray[i].scores[j] - newPerson.scores[j]);
-                totalDifference += difference;
+
+            var bestfreind = friendArray[i].scores.reduce((a, b) => a + b, 0);
+
+            totalDifference += Math.abs(tot - bestfreind)
+            if (totalDifference <= newFriend.friends){
+                newFriend.name = friendArray[i].name;
+                newFriend.photo = friendArray[i].photo;
+                newFriend.friends = totalDifference;
             }
             
-            if (totalDifference < closestDifference){
-               
-                bestFriendIndex = i;
-                
-                closestDifference = totalDifference;
-            }
+            
+            
         }
         
-       
-        res.json(friendArray[bestFriendIndex]);
-        
-        
-        friendArray.push(newPerson);
+       friendArray.push(newPerson);
+        res.json(newFriend);
         
     })
     
